@@ -19,3 +19,11 @@ def directory():
         os.mkdir(directory_rose)
     if not os.path.isdir("tulip"):
         os.mkdir(directory_tulip)
+
+
+url = "https://yandex.ru/images/search?text=rose"
+
+
+def valid(url):
+    parse = urlparse(url)
+    return bool(parse.scheme) and bool(parse.netloc)
