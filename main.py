@@ -41,27 +41,6 @@ def load_img(url_obj, directory_obj):
         print(url)
         s += 1
 
-
-name = string.ascii_lowercase
-str = ''.join(random.sample(name, 15))
-rand_user = {'User-Agent': str}
-
-html_text = requests.get(url, headers=rand_user).text
-
-soup = bs(html_text, 'html.parser')
-img = soup.find_all('img', class_="serp-item__thumb justifier__thumb")
-
-url_src = []
-
-for i in img:
-    url_src.append(i.get("src"))
-
-
-    for i in range(1, 51):
-        url = "https://yandex.ru/images/search?p=%d&text=rose&lr=51&rpt=image&uinfo=sw-1920-sh-1080-ww-1872-wh-932-pd-1-wp-16x9_1920x1080" % s
-
-        print(url)
-        s += 1
         name = string.ascii_lowercase
         str1 = ''.join(random.sample(name, 15))
         rand_user = {'User-Agent': str1}
@@ -75,15 +54,15 @@ for i in img:
         for j in img:
             url_src.append(j.get("src"))
 
-        for k in tqdm(url_src):
+        for k in tqdm.tqdm((url_src)):
             url_absolut = "https:" + k
             r = requests.get(url_absolut).content
-            fp = open(directory_rose + '/' + f"{so:05}" + '.jpg', "wb")
+            fp = open(directory_obj + '\\' + f"{so:04}" + '.jpg', "wb")
             fp.write(r)
             so += 1
             time.sleep(0.25)
-            print(count, "/40")
-            count += 1
+        print(count, "/40")
+        count += 1
 
 
 def calc_image_hash(filename):
@@ -155,9 +134,11 @@ def comparison(directory):
 directory_rose = "D:\VS Code project\Images.py\dataset\ rose"
 directory_tulip = "D:\VS Code project\Images.py\dataset\ tulip"
 
+
 url = "https://yandex.ru/images/search?p=%d&text=rose&lr=51&rpt=image&uinfo=sw-1920-sh-1080-ww-1872-wh-932-pd-1-wp-16x9_1920x1080"
 load_img(url, directory_rose)
 comparison(directory_rose)
+
 
 url = "https://yandex.ru/images/search?p=%d&text=tulip&from=tabbar&uinfo=sw-1920-sh-1080-ww-1872-wh-932-pd-1-wp-16x9_1920x1080&lr=101134&rpt=image"
 load_img(url, directory_tulip)
