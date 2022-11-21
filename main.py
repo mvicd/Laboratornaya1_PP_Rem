@@ -1,19 +1,12 @@
-from datetime import time
-from msilib.schema import Directory
+import os
+import random
 import string
-from random import random
-
+import time
+from urllib.parse import urlparse
 import cv2
 import requests
-import os
-from tqdm import tqdm
 from bs4 import BeautifulSoup as bs
-from urllib.parse import urljoin, urlparse
-from urllib.parse import urljoin, urlparse
-
-directory_dataset = "D:\VS Code project\Images.py\dataset"
-directory_rose = "D:\VS Code project\Images.py\dataset\rose"
-directory_tulip = "D:\VS Code project\Images.py\dataset\tulip"
+import tqdm
 
 
 def directory():
@@ -63,12 +56,6 @@ url_src = []
 for i in img:
     url_src.append(i.get("src"))
 
-
-def rose_load():
-    directory()
-    count = 1
-    s = 0
-    so = 1
 
     for i in range(1, 51):
         url = "https://yandex.ru/images/search?p=%d&text=rose&lr=51&rpt=image&uinfo=sw-1920-sh-1080-ww-1872-wh-932-pd-1-wp-16x9_1920x1080" % s
